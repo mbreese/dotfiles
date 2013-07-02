@@ -1,0 +1,9 @@
+#!/bin/bash
+COUNT=12
+if [ "$1" != "" ]; then
+    COUNT=$1
+fi
+
+# note the characters used - this is not a full alphabet (no i,I,1,l,0,O,o)
+# This is largely for passwords or for giving a random string to others.
+LC_CTYPE=C tr -dc ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789_ < /dev/urandom | head -c $COUNT | xargs

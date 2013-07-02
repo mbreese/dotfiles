@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "$2" != "" ]; then
+cat $1 | tr '\r' '\n' > $2
+else
+cat $1 | tr '\r' '\n' > .tmp.$$
+mv .tmp.$$ $1
+fi
+

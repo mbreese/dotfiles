@@ -1,0 +1,5 @@
+alias python='python_chooser'
+alias screen='screen -R -DD'
+alias ..='cd ..'
+
+

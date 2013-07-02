@@ -1,0 +1,20 @@
+#!/bin/bash
+for dir in env venv; do 
+    if [ -e ./$dir/bin/activate.sh ]; then
+        . ./$dir/bin/activate.sh
+    fi
+done
+
+if [[ "$1" == "" && "$(which ipython)" != "" ]]; then
+    ipython
+else
+#    ARGS=()
+#    i=0
+#    for arg in "$@"; do
+#        ARGS[$i]="$arg"
+#        ((++i))
+#    done
+
+    python "$@"
+fi
+
