@@ -1,24 +1,28 @@
 #!/bin/bash
 cd $(dirname $0)
 
-for f in $(ls -a); do
-    if [[ "$f" != "." && "$f" != ".." && "$f" != ".git" && "$f" != "bin" && "$f" != "setup.sh" && "$f" != "README.md" ]]; then
-        if [ -e $HOME/$f ]; then
-            echo "$f exists in $HOME - remove if you want to use the .dotfiles version"
-        else
-            if [ ! -L $HOME/$f ]; then
-                ln -s $f $HOME/$f
-            fi
+DOTDIR=$(bin/realpath .)
+if [ "$DOTDIR" == "" ]; then
+    DOTDIR="$HOME/.dotfiles"
+fi
+
+for f in $(ls -a *.symlink); do
+    TARGET=".$(echo "$f" | sed -e 's/.symlink//')"
+    if [ -e $HOME/$TARGET ]; then
+        if [ ! -L $HOME/$TARGET ]; then
+            echo "$TARGET exists in $HOME - remove if you want to use the .dotfiles version"
         fi
+    else
+        ln -s $DOTDIR/$f $HOME/$TARGET
     fi
 done
 
 for f in $(ls bin); do
     if [ -e $HOME/bin/$f ]; then
-        echo "$f exists in $HOME/bin - remove if you want to use the .dotfiles version"
+        if [ ! -L $HOME/bin/$f ]; then
+            echo "$f exists in $HOME/bin - remove if you want to use the .dotfiles version"
+        fi
     else
-            if [ ! -L $HOME/bin/$f ]; then
-                ln -s bin/$f $HOME/bin/$f
-            fi
+        ln -s $DOTDIR/bin/$f $HOME/bin/$f
     fi
 done
