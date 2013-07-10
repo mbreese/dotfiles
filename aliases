@@ -2,4 +2,5 @@ alias python='python_chooser'
 alias screen='screen -R -DD'
 alias ..='cd ..'
 
-
+alias erinandmarcus='ssh -p 2222 erinandmarcus.com'
+alias cabiopeds='ssh cabiopeds.stanford.edu'

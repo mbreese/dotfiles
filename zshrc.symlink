@@ -2,6 +2,9 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=$HOME/.zsh_history
 
+bindkey '^?' backward-delete-char
+bindkey '^[[3~' delete-char
+
 setopt SHARE_HISTORY        # Share history across sessions
 setopt HIST_IGNORE_SPACE    # commands starting w/ a space don't go into history
 
@@ -28,3 +31,7 @@ export PATH=$PATH:$HOME/bin
 if [ -e $HOME/.dotfiles/aliases ]; then
     source $HOME/.dotfiles/aliases
 fi
+if [ -e $HOME/.dotfiles/local/aliases ]; then
+    source $HOME/.dotfiles/local/aliases
+fi
+
