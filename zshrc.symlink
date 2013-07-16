@@ -34,8 +34,11 @@ __git_branch() {
 
 PS1="[%*] %m:%~ %n$ "
 
-_prompt_and_resched() { sched +1 _prompt_and_resched; zle && zle reset-prompt }
-_prompt_and_resched
+sched +1 echo 'hi' '>' /dev/null 2> /dev/null
+if [ $? -eq 0 ]; then
+  _prompt_and_resched() { sched +1 _prompt_and_resched; zle && zle reset-prompt }
+  _prompt_and_resched
+fi
 
 [ -z "$PS1" ] && return
 
