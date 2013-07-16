@@ -14,6 +14,9 @@ __git_branch() {
 
 PS1="[%*] %m:%~ %n$ "
 
+_prompt_and_resched() { sched +1 _prompt_and_resched; zle && zle reset-prompt }
+_prompt_and_resched
+
 [ -z "$PS1" ] && return
 
 for f in `ls ~/bin`; do
