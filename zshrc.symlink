@@ -60,4 +60,7 @@ fi
 if [ -e $HOME/.dotfiles/local/aliases ]; then
     source $HOME/.dotfiles/local/aliases
 fi
+if [ -e $HOME/.dotfiles/local/zshrc ]; then
+    source $HOME/.dotfiles/local/zshrc
+fi
 
