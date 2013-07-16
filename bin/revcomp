@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+'Converts a DNA sequence to the reverse compliment'
+
+import sys
+
+
+__rc = {}
+
+for base, rev in zip('ACGTacgtNn', 'TGCAtgcaNn'):
+    __rc[base] = rev
+
+
+def revcomp(seq):
+    for base in seq[::-1]:
+        sys.stdout.write(__rc[base])
+    sys.stdout.write('\n')
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        sys.stderr.write('Usage: revcomp seq1 seq2 ...\n')
+        sys.exit(1)
+
+    for arg in sys.argv[1:]:
+        revcomp(arg)
+
