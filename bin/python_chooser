@@ -5,7 +5,7 @@ for dir in env venv; do
     fi
 done
 
-if [[ "$1" == "" && "$(which ipython)" != "" ]]; then
+if [[ "$1" == "" && "$(which ipython 2>/dev/null )" != "" ]]; then
     ipython
 else
 #    ARGS=()
