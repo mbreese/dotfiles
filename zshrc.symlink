@@ -4,6 +4,26 @@ HISTFILE=$HOME/.zsh_history
 
 setopt SHARE_HISTORY        # Share history across sessions
 setopt HIST_IGNORE_SPACE    # commands starting w/ a space don't go into history
+autoload -U compinit
+compinit
+
+#allow tab completion in the middle of a word
+setopt COMPLETE_IN_WORD
+
+## history
+setopt APPEND_HISTORY
+## for sharing history between zsh processes
+setopt INC_APPEND_HISTORY
+
+## never ever beep ever
+setopt NO_BEEP
+
+autoload -U colors
+colors
+
+
+
+
 
 __git_branch() {
     git symbolic-ref HEAD 2> /dev/null | cut -d '/' -f 3
@@ -24,6 +44,9 @@ for f in `ls ~/bin`; do
 done
 
 export PATH=$PATH:$HOME/bin
+if [ -e $HOME/.local ]; then
+    export PATH=$PATH:$HOME/.local/bin:$HOME/.local/usr/bin
+fi
 
 if [ -e $HOME/.dotfiles/aliases ]; then
     source $HOME/.dotfiles/aliases
