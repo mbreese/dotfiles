@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TMP=".gopath"
+
+if [ $(which realpath) == "" ]; then
+    echo "ERROR: gopath_wrapper requires 'realpath' to be installed"
+    exit 1
+fi
+
+while [ ! -e "$TMP" ]; do
+    TMP="../$TMP"
+    if [ $(realpath $(dirname $TMP)) == "/" ]; then
+        break
+    fi
+done
+
+if [ -e $TMP ]; then
+    exec GOPATH="$(realpath $(dirname $TMP))" go ${@}
+else
+    exec go ${@}
+fi

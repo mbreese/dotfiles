@@ -1,4 +1,5 @@
 alias python='python_chooser'
+alias go='gopath_wrapper'
 alias screen='screen -R -DD'
 alias ..='cd ..'
 
