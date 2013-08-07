@@ -15,7 +15,9 @@ while [ ! -e "$TMP" ]; do
 done
 
 if [ -e $TMP ]; then
-    exec GOPATH="$(realpath $(dirname $TMP))" go ${@}
+    GOPATH="$(realpath $(dirname $TMP))" go ${@}
 else
-    exec go ${@}
+    go ${@}
 fi
+
+exit $?
