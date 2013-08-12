@@ -78,3 +78,9 @@ preexec() {
 #  C=$(($COLUMNS-24))
 #  echo -e "\033[1A\033[${C}C ${DATE} "
 }
+
+if [ "$(which go)" != "" ]; then
+export GOROOT="$(go env | grep ^GOROOT | sed -e 's/"//g' | sed -e 's/^GOROOT=//')"
+fi
+
+bindkey -v

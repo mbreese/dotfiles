@@ -4,5 +4,5 @@
 PS1="[\t] \h:\W \u\$ "
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
-
+set -o vi
 
