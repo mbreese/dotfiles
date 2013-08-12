@@ -1,0 +1,8 @@
+#!/bin/bash
+[ -z "$PS1" ] && return
+
+PS1="[\t] \h:\W \u\$ "
+
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+
+
