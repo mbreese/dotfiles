@@ -1,6 +1,9 @@
 alias python='python_chooser'
+alias go='gopath_wrapper'
 alias screen='screen -R -DD'
 alias ..='cd ..'
 
 alias erinandmarcus='ssh -p 2222 erinandmarcus.com'
-alias cabiopeds='ssh cabiopeds.stanford.edu'
+alias cabiopeds='ssh 171.65.124.40'
+#alias cabiopeds='ssh cabiopeds.stanford.edu'
+alias scg3='ssh scg3.stanford.edu'

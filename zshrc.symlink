@@ -71,11 +71,13 @@ __git_branch() {
 
 PS1="[%*] %m:%~ %n$ "
 
-sched +1 echo 'hi' '>' /dev/null 2> /dev/null
-if [ $? -eq 0 ]; then
-  _prompt_and_resched() { sched +1 _prompt_and_resched; zle && zle reset-prompt }
-  _prompt_and_resched
-fi
+
+##### updates the prompt every second - it's a bit annoying.
+#sched +1 echo 'hi' '>' /dev/null 2> /dev/null
+#if [ $? -eq 0 ]; then
+#  _prompt_and_resched() { sched +1 _prompt_and_resched; zle && zle reset-prompt }
+#  _prompt_and_resched
+#fi
 
 [ -z "$PS1" ] && return
 
@@ -104,3 +106,18 @@ if [ -e $HOME/.dotfiles/local/zshrc ]; then
     source $HOME/.dotfiles/local/zshrc
 fi
 
+
+#Update the prompt right before executing... sets the correct time to a prompt
+preexec() {
+  DATE=$(date +"%H:%M:%S")
+  echo -e "\033[1A[${DATE}] "
+## right justified
+#  C=$(($COLUMNS-24))
+#  echo -e "\033[1A\033[${C}C ${DATE} "
+}
+
+if [ "$(which go)" != "" ]; then
+export GOROOT="$(go env | grep ^GOROOT | sed -e 's/"//g' | sed -e 's/^GOROOT=//')"
+fi
+
+bindkey -v
