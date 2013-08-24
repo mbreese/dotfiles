@@ -95,6 +95,9 @@ export PATH=$HOME/bin:$PATH
 if [ -e $HOME/.local ]; then
     export PATH=$HOME/.local/bin:$HOME/.local/usr/bin:$PATH
 fi
+if [ "$(which go 2>/dev/null)" != "" ]; then
+export GOROOT="$(go env | grep ^GOROOT | sed -e 's/"//g' | sed -e 's/^GOROOT=//')"
+fi
 
 if [ -e $HOME/.dotfiles/aliases ]; then
     source $HOME/.dotfiles/aliases
@@ -116,8 +119,5 @@ preexec() {
 #  echo -e "\033[1A\033[${C}C ${DATE} "
 }
 
-if [ "$(which go)" != "" ]; then
-export GOROOT="$(go env | grep ^GOROOT | sed -e 's/"//g' | sed -e 's/^GOROOT=//')"
-fi
 
 bindkey -v

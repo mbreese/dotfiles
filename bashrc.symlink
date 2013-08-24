@@ -1,6 +1,10 @@
 #!/bin/bash
 [ -z "$PS1" ] && return
 
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
 PS1="[\t] \h:\W \u\$ "
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
