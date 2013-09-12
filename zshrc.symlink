@@ -108,13 +108,13 @@ fi
 
 
 #Update the prompt right before executing... sets the correct time to a prompt
-preexec() {
-  DATE=$(date +"%H:%M:%S")
-  echo -e "\033[1A[${DATE}] "
+#preexec() {
+#  DATE=$(date +"%H:%M:%S")
+#  echo -e "\033[1A[${DATE}] "
 ## right justified
 #  C=$(($COLUMNS-24))
 #  echo -e "\033[1A\033[${C}C ${DATE} "
-}
+#}
 
 if [ "$(which go)" != "" ]; then
 export GOROOT="$(go env | grep ^GOROOT | sed -e 's/"//g' | sed -e 's/^GOROOT=//')"
