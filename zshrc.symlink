@@ -91,7 +91,7 @@ for f in `ls ~/bin`; do
   fi
 done
 
-export PATH=$HOME/bin:$PATH
+export PATH=venv/bin:env/bin:$HOME/bin:$PATH
 if [ -e $HOME/.local ]; then
     export PATH=$HOME/.local/bin:$HOME/.local/usr/bin:$PATH
 fi

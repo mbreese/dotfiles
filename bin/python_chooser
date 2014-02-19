@@ -1,7 +1,7 @@
 #!/bin/bash
 for dir in env venv; do 
-    if [ -e ./$dir/bin/activate.sh ]; then
-        . ./$dir/bin/activate.sh
+    if [ -e ./$dir/bin/activate ]; then
+        . ./$dir/bin/activate
     fi
 done
 
