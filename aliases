@@ -1,11 +1,16 @@
 alias python='python_chooser'
-alias go='gopath_wrapper'
+which go &>/dev/null
+if [ $? -eq 0 ]; then
+    alias go='gopath_wrapper'
+fi
 alias screen='screen -R -DD'
 alias ..='cd ..'
-#alias ls='ls --color=auto'
+if [ "$(uname)" = "FreeBSD" ]; then
+    alias ls='ls -G'
+else 
+    alias ls='ls --color=auto'
+fi
 
-alias erinandmarcus='ssh -p 2222 erinandmarcus.com'
-alias cabiopeds='ssh 171.65.124.40'
+alias cabiopeds='ssh cabiopeds.stanford.edu'
 alias cabiopeds-s1='ssh cabiopeds-s1'
-#alias cabiopeds='ssh cabiopeds.stanford.edu'
 alias scg3='ssh scg3.stanford.edu'
