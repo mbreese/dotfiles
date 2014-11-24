@@ -4,6 +4,7 @@ HISTFILE=$HOME/.zsh_history
 
 bindkey '^?' backward-delete-char
 bindkey '^[[3~' delete-char
+bindkey "^R" history-incremental-search-backward
 
 setopt SHARE_HISTORY        # Share history across sessions
 setopt HIST_IGNORE_SPACE    # commands starting w/ a space don't go into history

@@ -7,6 +7,8 @@ alias screen='screen -R -DD'
 alias ..='cd ..'
 if [ "$(uname)" = "FreeBSD" ]; then
     alias ls='ls -G'
+elif [ "$(uname)" = "Darwin" ]; then
+    alias ls='ls -G'
 else 
     alias ls='ls --color=auto'
 fi
