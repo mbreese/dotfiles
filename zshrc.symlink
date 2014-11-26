@@ -4,6 +4,7 @@ HISTFILE=$HOME/.zsh_history
 
 bindkey '^?' backward-delete-char
 bindkey '^[[3~' delete-char
+bindkey "^R" history-incremental-search-backward
 
 setopt SHARE_HISTORY        # Share history across sessions
 setopt HIST_IGNORE_SPACE    # commands starting w/ a space don't go into history
@@ -95,7 +96,8 @@ export PATH=venv/bin:env/bin:$HOME/bin:$PATH
 if [ -e $HOME/.local ]; then
     export PATH=$HOME/.local/bin:$HOME/.local/usr/bin:$PATH
 fi
-if [ "$(which go 2>/dev/null)" != "" ]; then
+which go &>/dev/null
+if [ $? -eq 0 ]; then
 export GOROOT="$(go env | grep ^GOROOT | sed -e 's/"//g' | sed -e 's/^GOROOT=//')"
 fi
 
@@ -121,3 +123,6 @@ fi
 
 
 bindkey -v
+
+
+

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cd $(dirname $0)
 
 DOTDIR=$(bin/realpath .)
