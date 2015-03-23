@@ -27,45 +27,6 @@ autoload -U colors
 colors
 
 
-###############
-# Jump to marked folders (http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html)
-###############
-export MARKPATH=$HOME/.marks
-function jump { 
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark { 
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark { 
-    rm "$MARKPATH/$1"
-}
-if [[ "$(uname -s)" == "Darwin" ]]; then
-function marks {
-    if [[ -d "$MARKPATH" && "$(ls $MARKPATH)" != "" ]]; then
-    (cd $MARKPATH && stat -f"%N%SY" * | column -t)
-    fi
-}
-else
-function marks {
-    if [[ -d "$MARKPATH" && "$(ls $MARKPATH)" != "" ]]; then
-    (cd $MARKPATH && stat -c"%N" * | sed -e "s/[\`']//g" | column -t)
-    fi
-    #ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-fi
-function _completemarks {
-  reply=($(ls $MARKPATH))
-}
-
-compctl -K _completemarks jump
-compctl -K _completemarks unmark
-
-
-
-
-
-
 __git_branch() {
     git symbolic-ref HEAD 2> /dev/null | cut -d '/' -f 3
 }

@@ -1,9 +1,3 @@
-alias python='python_chooser'
-which go &>/dev/null
-if [ $? -eq 0 ]; then
-    alias go='gopath_wrapper'
-fi
-alias screen='screen -R -DD'
 alias ..='cd ..'
 alias ...='cd ../..'
 if [ "$(uname)" = "FreeBSD" ]; then
@@ -16,4 +10,5 @@ fi
 
 alias cabiopeds='ssh cabiopeds.stanford.edu'
 alias cabiopeds-s1='ssh cabiopeds-s1'
+alias cabiopeds-c1='ssh cabiopeds-c1'
 alias scg3='ssh scg3.stanford.edu'
