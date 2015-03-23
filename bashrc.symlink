@@ -10,44 +10,6 @@ PS1="[\t] \h:\W \u\$ "
 export PATH=venv/bin:env/bin:$HOME/bin:$HOME/.local/bin:$PATH
 set -o vi
 
-###############
-# Jump to marked folders (http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html)
-###############
-export MARKPATH=$HOME/.marks
-function jump { 
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark { 
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark { 
-    rm "$MARKPATH/$1"
-}
-if [[ "$(uname -s)" == "Darwin" ]]; then
-function marks {
-    if [[ -d "$MARKPATH" && "$(ls $MARKPATH)" != "" ]]; then
-    (cd $MARKPATH && stat -f"%N%SY" * | column -t)
-    fi
-}
-else
-function marks {
-    if [[ -d "$MARKPATH" && "$(ls $MARKPATH)" != "" ]]; then
-    (cd $MARKPATH && stat -c"%N" * | sed -e "s/[\`']//g" | column -t)
-    fi
-    #ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-fi
-_completemarks() {
-  local curw=${COMP_WORDS[COMP_CWORD]}
-  local wordlist=$(find $MARKPATH -type l -printf "%f\n")
-  COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
-  return 0
-}
-
-complete -F _completemarks jump unmark
-
-
-
 source $HOME/.dotfiles/aliases
 
 if [ -e $HOME/.dotfiles/local/aliases ]; then
